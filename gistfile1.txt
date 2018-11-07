@@ -8,3 +8,21 @@ virtualenv venv
 source venv/bin/activate
 pip install locustio
 pip install pyzmq
+
+console ubuntu
+# vi locustfile.py
+   from locust import HttpLocust, TaskSet, task
+
+   class UserBehavior(TaskSet):
+
+    @task
+    def get_somthing7(self):
+        self.client.get("/VTR/01_PC.mp4")
+
+  class WebsiteUser(HttpLocust):
+    task_set = UserBehavior
+    min_wait = 0
+    max_wait = 0
+  :wq!
+  
+  #locust -f locustfile.py --host=http://27.xxx.xxx.xxx:81
